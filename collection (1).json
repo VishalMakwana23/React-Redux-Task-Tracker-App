@@ -1,0 +1,774 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost\/"
+        }
+    ],
+    "info": {
+        "name": "Vacaay",
+        "_postman_id": "265a6f54-1d67-47fc-93c0-8a4a17418721",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "App authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Email Available",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/email_available",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/email_available"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"test@example.com\"}"
+                        },
+                        "description": "\n    Checks if the email string is available to use.\n    ",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"email\":\"qkunze@example.com\",\"available\":true,\"message\":\"The email address is available\"}",
+                            "name": "Email is available to use."
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"email\":\"qkunze@example.com\",\"available\":false,\"message\":\"The email address is already used\"}",
+                            "name": "Email already in use."
+                        }
+                    ]
+                },
+                {
+                    "name": "Username Available",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/username_available",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/username_available"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\":\"John Doe\"}"
+                        },
+                        "description": "\n    Checks if the username string is available to use.\n    ",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"username\":\"consequatur\",\"available\":true,\"message\":\"The username address is available\"}",
+                            "name": "Username is available to use."
+                        },
+                        {
+                            "header": [],
+                            "code": 409,
+                            "body": "{\"username\":\"consequatur\",\"available\":false,\"message\":\"The username address is already used\"}",
+                            "name": "Username already in use."
+                        }
+                    ]
+                },
+                {
+                    "name": "Register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\":\"John Doe\",\"email\":\"test@example.com\",\"password\":\"P@lokij12\"}"
+                        },
+                        "description": "\n    It creates a new user for a given login and password combination and returns a fresh token for them.\n\n    Otherwise, the request will fail with a 422 error, and a response listing the error messages.\n    ",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"token\":\"1|J1lbMmCFj5W87AJfym4EleG2Jlu5ktWqDqlOo6de\"}}",
+                            "name": "User was created successfully."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Password does not meet the minimum requirements\",\"errors\":{\"password\":[\"Password does not meet the minimum requirements\"]}}",
+                            "name": "Password not strong enough or invalid format."
+                        }
+                    ]
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"test@example.com\",\"password\":\"P@lokij12\"}"
+                        },
+                        "description": "\n    It authenticates a user for a given email and password combination and returns a fresh token for them.\n\n    Otherwise, the request will fail with a 422 error, and a response listing the error messages.\n    ",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"data\":{\"token\":\"1|J1lbMmCFj5W87AJfym4EleG2Jlu5ktWqDqlOo6de\"}}",
+                            "name": "User was log in successfully."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Invalid login\",\"errors\":{\"email\":[\"Invalid login\"]}}",
+                            "name": "Incorrect login"
+                        }
+                    ]
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\n    It logouts the user and revoke active tokens of the user.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"message\":\"User successfully logged out!\"}",
+                            "name": "User was logged out successfully."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Token not found!\"}",
+                            "name": "The token trying to be revoked can't be found."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Countries",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/countries",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/countries"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\n    Fetch all list of countries.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"name\":\"Australia\",\"code\":\"AU\"},{\"name\":\"Brazil\",\"code\":\"BR\"},{\"name\":\"Philippines\",\"code\":\"PH\"}]}",
+                            "name": "Countries successfully fetched."
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\n    \"message\": \"The route api\/v1\/user could not be found.\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",\n    \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/AbstractRouteCollection.php\",\n    \"line\": 44,\n    \"trace\": [\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/RouteCollection.php\",\n            \"line\": 162,\n            \"function\": \"handleMatchedRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\AbstractRouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 761,\n            \"function\": \"match\",\n            \"class\": \"Illuminate\\\\Routing\\\\RouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 748,\n            \"function\": \"findRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 737,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 200,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 144,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/livewire\/livewire\/src\/Features\/SupportDisablingBackButtonCache\/DisableBackButtonCacheMiddleware.php\",\n            \"line\": 19,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Livewire\\\\Features\\\\SupportDisablingBackButtonCache\\\\DisableBackButtonCacheMiddleware\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/PreventRequestsDuringMaintenance.php\",\n            \"line\": 99,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Http\/Middleware\/HandleCors.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Http\/Middleware\/TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 183,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 119,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 175,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 144,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 300,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 288,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 91,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 44,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 236,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 163,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 95,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 125,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 72,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 50,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/knuckleswtf\/scribe\/src\/Commands\/GenerateDocumentation.php\",\n            \"line\": 53,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Util.php\",\n            \"line\": 41,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 35,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php\",\n            \"line\": 662,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 211,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/symfony\/console\/Command\/Command.php\",\n            \"line\": 326,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 180,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 1096,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 324,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 175,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php\",\n            \"line\": 201,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/var\/www\/html\/artisan\",\n            \"line\": 35,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Passport",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET visits",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/passports\/:passport_uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/passports\/:passport_uuid",
+                            "variable": [
+                                {
+                                    "id": "passport_uuid",
+                                    "key": "passport_uuid",
+                                    "value": "9b8cab1f-695e-4969-be88-21760f95184d",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "passport_id",
+                                    "key": "passport_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The passport uuid."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\n    Retrieve all passport visits entry\n\n    Otherwise, the request will fail with a 404 or 403 response code with message.\n    ",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\": [{\"type\": \"country\",\"lat\": \"33.939100\",\"long\": \"67.710000\",\"country_code\": \"AF\",\"name\": \"Afghanistan\",\"id\": \"3629dc24-5fe6-4e5e-bae1-99ae616c13f9\"}]}",
+                            "name": "Successfully fetch a passport with visits data."
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\"message\":\"Cannot view this passport!\"}",
+                            "name": "Viewing passport is forbidden."
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"Passport not found!\"}",
+                            "name": "Passport record does not exists."
+                        }
+                    ]
+                },
+                {
+                    "name": "New Visit - Country",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/passports\/:passport_uuid\/country",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/passports\/:passport_uuid\/country",
+                            "variable": [
+                                {
+                                    "id": "passport_uuid",
+                                    "key": "passport_uuid",
+                                    "value": "9b8cab1f-695e-4969-be88-21760f95184d",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "passport_id",
+                                    "key": "passport_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The passport uuid."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":\"1\",\"number_of_visit\":\"1\",\"last_time_there\":\"this_year\",\"time_spent_there\":\"1_3_weeks\",\"spent_time_there\":\"less_than_1_week\"}"
+                        },
+                        "description": "\n    Create a new passport visit entry for a Country\n\n    Otherwise, the request will fail with a 422 error, and a response listing the error messages.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"message\":\"Country visit successfully saved!\"}",
+                            "name": "Visit entry successfully made."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Data not found!\"}",
+                            "name": "Country id try to process cannot be found!"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Country visit already exists! Please perform an update instead.\"}",
+                            "name": "Existing envery for visit found."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"The number of visit field is required.\",\"errors\":{\"number_of_visit\":[\"The number of visit field is required.\"]}}",
+                            "name": "When body params validation fails."
+                        }
+                    ]
+                },
+                {
+                    "name": "New Visit - POI",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/passports\/:passport_uuid\/poi",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/passports\/:passport_uuid\/poi",
+                            "variable": [
+                                {
+                                    "id": "passport_uuid",
+                                    "key": "passport_uuid",
+                                    "value": "9b8cab1f-695e-4969-be88-21760f95184d",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "passport_id",
+                                    "key": "passport_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The passport uuid."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":\"1\",\"number_of_visit\":\"1\",\"last_time_there\":\"this_year\",\"time_spent_there\":\"1_3_weeks\",\"spent_time_there\":\"less_than_1_week\"}"
+                        },
+                        "description": "\n    Create a new passport visit entry for a POI\n\n    Otherwise, the request will fail with a 422 error, and a response listing the error messages.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"message\":\"POI visit successfully saved!\"}",
+                            "name": "Visit entry successfully made."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Data not found!\"}",
+                            "name": "POI id try to process cannot be found!"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"POI visit already exists! Please perform an update instead.\"}",
+                            "name": "Existing envery for visit found."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"The number of visit field is required.\",\"errors\":{\"number_of_visit\":[\"The number of visit field is required.\"]}}",
+                            "name": "When body params validation fails."
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Visit - (POI or Country)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/passports\/:passport_uuid\/visits\/:visit_uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/passports\/:passport_uuid\/visits\/:visit_uuid",
+                            "variable": [
+                                {
+                                    "id": "passport_uuid",
+                                    "key": "passport_uuid",
+                                    "value": "9b8cab1f-695e-4969-be88-21760f95184d",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "visit_uuid",
+                                    "key": "visit_uuid",
+                                    "value": "9b9accce-c16a-4e61-aef4-06a8cdb98ce5",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "passport_id",
+                                    "key": "passport_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The passport uuid."
+                                },
+                                {
+                                    "id": "visit_id",
+                                    "key": "visit_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The visit uuid."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"number_of_visit\":\"1\",\"last_time_there\":\"this_year\",\"time_spent_there\":\"1_3_weeks\",\"spent_time_there\":\"less_than_1_week\"}"
+                        },
+                        "description": "\n    Modify a passport visit for a POI or Country\n\n    Otherwise, the request will fail with a 422 error, and a response listing the error messages.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"message\":\"Country or POI visit successfully saved!\"}",
+                            "name": "Visit entry successfully made."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"Data not found!\"}",
+                            "name": "POI id try to process cannot be found!"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"The number of visit field is required.\",\"errors\":{\"number_of_visit\":[\"The number of visit field is required.\"]}}",
+                            "name": "When body params validation fails."
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Visit - (POI or Country)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/passports\/:passport_uuid\/visits\/:visit_uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/passports\/:passport_uuid\/visits\/:visit_uuid",
+                            "variable": [
+                                {
+                                    "id": "passport_uuid",
+                                    "key": "passport_uuid",
+                                    "value": "9b8cab1f-695e-4969-be88-21760f95184d",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "visit_uuid",
+                                    "key": "visit_uuid",
+                                    "value": "9b9accce-c16a-4e61-aef4-06a8cdb98ce5",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "passport_id",
+                                    "key": "passport_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The passport uuid."
+                                },
+                                {
+                                    "id": "visit_id",
+                                    "key": "visit_id",
+                                    "value": "3629dc24-5fe6-4e5e-bae1-99ae616c13f9",
+                                    "description": "The visit uuid."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\n    Remove a passport visit for a POI or Country\n\n    Otherwise, the request will fail with a 400 error, and a response listing the error messages.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\"message\":\"Visit successfully removed!\"}",
+                            "name": "Visit remove successfully made."
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\"message\":\"Data not found!\"}",
+                            "name": "Visit to delete cannot be found!"
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\"message\":\"This action is unauthorized.\"}",
+                            "name": "Visit to delete cannot be access!"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Profile",
+            "description": "",
+            "item": [
+                {
+                    "name": "Update",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/profile"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"age\":20,\"avatar\":\"architecto\",\"bio\":\"architecto\",\"cover\":\"architecto\",\"favourite_place\":\"architecto\",\"first_name\":\"John\",\"gender\":\"I'd rather not say\",\"last_name\":\"Doe\",\"links\":[[]],\"remove_avatar\":true,\"remove_cover\":false,\"travel_style\":\"architecto\"}"
+                        },
+                        "description": "\n    It updates the user profile for a given inputs and returns an updated state of the User.\n\n    Otherwise, the request will fail with a 422 error, and a response listing the error messages.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"uuid\":\"9b8d61b3-6147-4dd1-b14d-9d0a9d940131\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"username\":\"johndoe7\",\"email\":\"test7@example.com\",\"current_team_id\":null,\"profile_photo_path\":\"avatars\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"banner_photo_path\":\"covers\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"country_id\":null,\"age\":23,\"gender\":\"male\",\"bio\":\"Test Only\",\"favourite_place\":null,\"links\":\"{\\\"web\\\":\\\"https:\\\\\/\\\\\/myweb.com\\\",\\\"instagram\\\":\\\"https:\\\\\/\\\\\/instagram.com\\\"}\",\"preferences\":null,\"travel_style\":null,\"is_sharing_location\":false,\"is_verified\":false,\"is_trending\":false,\"is_popular\":false,\"is_protected\":false,\"is_private\":0,\"created_at\":\"2024-03-13T07:35:18.000000Z\",\"profile_photo_url\":\"https:\/\/vacaay-dev.s3.amazonaws.com\/avatars\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"banner_photo_url\":\"https:\/\/vacaay-dev.s3.amazonaws.com\/covers\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\"}",
+                            "name": "Return user record."
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"message\":\"The age must be a number. (and 1 more error)\",\"errors\":{\"age\":[\"The age must be a number.\",\"The age must not have more than 3 digits.\"]}}{\"message\":\"The age must be a number. (and 1 more error)\",\"errors\":{\"age\":[\"The age must be a number.\",\"The age must not have more than 3 digits.\"]}}",
+                            "name": "Body request has error."
+                        }
+                    ]
+                },
+                {
+                    "name": "View",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/profile\/:username",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/profile\/:username",
+                            "variable": [
+                                {
+                                    "id": "username",
+                                    "key": "username",
+                                    "value": "consequtor",
+                                    "description": "The User's username to find"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\n    Retrieve the user profile for a given username and returns all information about the user.\n\n    If user is private. Username, avatar and cover image will be returned.\n\n    Otherwise, the request will fail with a 404 error, and a response that the user was not found.\n    "
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"uuid\":\"9b8d61b3-6147-4dd1-b14d-9d0a9d940131\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"username\":\"johndoe7\",\"email\":\"test7@example.com\",\"two_factor_confirmed_at\":null,\"current_team_id\":null,\"profile_photo_path\":\"avatars\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"banner_photo_path\":\"covers\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"country_id\":2,\"age\":23,\"gender\":\"male\",\"bio\":\"Test Only\",\"favourite_place\":null,\"links\":\"{\\\"web\\\":\\\"https:\\\\\/\\\\\/myweb.com\\\",\\\"instagram\\\":\\\"https:\\\\\/\\\\\/instagram.com\\\"}\",\"preferences\":null,\"travel_style\":null,\"is_sharing_location\":false,\"is_verified\":false,\"is_trending\":false,\"is_popular\":false,\"is_protected\":false,\"is_private\":0,\"created_at\":\"2024-03-13T07:35:18.000000Z\",\"profile_photo_url\":\"http:\\\/\\\/localhost\\\/storage\\\/avatars\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"banner_photo_url\":\"\\\/storage\\\/covers\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\"}",
+                            "name": "User found."
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"username\":\"johndoe7\",\"profile_photo_path\":\"avatars\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"banner_photo_path\":\"covers\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"profile_photo_url\":\"http:\\\/\\\/localhost\\\/storage\\\/avatars\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\",\"banner_photo_url\":\"\\\/storage\\\/covers\\\/9b8d61b3-6147-4dd1-b14d-9d0a9d940131.png\"}",
+                            "name": "User found but profile is private."
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\"message\":\"User not found.\"}",
+                            "name": "User not found."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "key",
+                "type": "string"
+            }
+        ]
+    }
+}
